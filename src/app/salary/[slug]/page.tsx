@@ -182,7 +182,7 @@ export default async function SalaryPage({ params }: SalaryPageProps) {
 
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
-        <nav className="mb-6 flex items-center gap-2 text-sm text-slate-400">
+        <nav className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-slate-400 sm:gap-2">
           <Link href="/" className="hover:text-white">
             Home
           </Link>
@@ -191,11 +191,11 @@ export default async function SalaryPage({ params }: SalaryPageProps) {
             Jobs
           </Link>
           <span>/</span>
-          <Link href={`/jobs/${job.slug}`} className="hover:text-white">
+          <Link href={`/jobs/${job.slug}`} className="truncate hover:text-white">
             {job.title}
           </Link>
           <span>/</span>
-          <span className="text-white">{country.name}</span>
+          <span className="truncate text-white">{country.name}</span>
         </nav>
 
         {/* Header */}
@@ -218,7 +218,7 @@ export default async function SalaryPage({ params }: SalaryPageProps) {
         <AnimatedSection delay={0.03}>
           <div className="mb-8 text-center">
             <p className="text-sm text-slate-400">Average Annual Salary</p>
-            <p className="mt-1 text-5xl font-extrabold text-white">{formatCurrency(salary.salaryAvg)}</p>
+            <p className="mt-1 text-3xl font-extrabold text-white sm:text-5xl">{formatCurrency(salary.salaryAvg)}</p>
             <p className="mt-1 text-sm text-slate-500">in {country.name}</p>
           </div>
         </AnimatedSection>

@@ -156,16 +156,16 @@ export default async function ComparePage({ params }: ComparePageProps) {
       {/* Comparison Table */}
       <AnimatedSection delay={0.05}>
         <div className="mb-10 overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
-          <table className="w-full min-w-[600px] text-left">
+          <table className="w-full min-w-[480px] text-left">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="px-6 py-4 text-sm font-semibold text-slate-400">
+                <th className="px-3 py-4 text-sm font-semibold text-slate-400 sm:px-6">
                   Metric
                 </th>
                 {comparisonData.map((d) => (
                   <th
                     key={d.country.slug}
-                    className="px-6 py-4 text-sm font-semibold text-white"
+                    className="px-3 py-4 text-sm font-semibold text-white sm:px-6"
                   >
                     {countryCodeToFlag(d.country.code)} {d.country.name}
                   </th>
@@ -174,13 +174,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
             </thead>
             <tbody className="divide-y divide-white/5">
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Gross Salary (Avg)
                 </td>
                 {comparisonData.map((d) => (
                   <td
                     key={d.country.slug}
-                    className="px-6 py-3 text-sm font-semibold text-white"
+                    className="px-3 py-3 text-sm font-semibold text-white sm:px-6"
                   >
                     {d.salary
                       ? formatCurrency(d.salary.salaryAvg)
@@ -189,13 +189,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 ))}
               </tr>
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Median Salary
                 </td>
                 {comparisonData.map((d) => (
                   <td
                     key={d.country.slug}
-                    className="px-6 py-3 text-sm font-semibold text-white"
+                    className="px-3 py-3 text-sm font-semibold text-white sm:px-6"
                   >
                     {d.salary
                       ? formatCurrency(d.salary.salaryMedian)
@@ -204,13 +204,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 ))}
               </tr>
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Entry Level
                 </td>
                 {comparisonData.map((d) => (
                   <td
                     key={d.country.slug}
-                    className="px-6 py-3 text-sm text-white"
+                    className="px-3 py-3 text-sm text-white sm:px-6"
                   >
                     {d.salary
                       ? formatCurrency(d.salary.salaryEntry)
@@ -219,13 +219,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 ))}
               </tr>
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Senior Level
                 </td>
                 {comparisonData.map((d) => (
                   <td
                     key={d.country.slug}
-                    className="px-6 py-3 text-sm text-white"
+                    className="px-3 py-3 text-sm text-white sm:px-6"
                   >
                     {d.salary
                       ? formatCurrency(d.salary.salarySenior)
@@ -234,13 +234,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 ))}
               </tr>
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Effective Tax Rate
                 </td>
                 {comparisonData.map((d) => (
                   <td
                     key={d.country.slug}
-                    className="px-6 py-3 text-sm font-semibold text-red-400"
+                    className="px-3 py-3 text-sm font-semibold text-red-400 sm:px-6"
                   >
                     {d.netSalary
                       ? formatPercent(d.netSalary.effectiveRate)
@@ -249,13 +249,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 ))}
               </tr>
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Net Annual Income
                 </td>
                 {comparisonData.map((d) => (
                   <td
                     key={d.country.slug}
-                    className="px-6 py-3 text-sm font-semibold text-emerald-400"
+                    className="px-3 py-3 text-sm font-semibold text-emerald-400 sm:px-6"
                   >
                     {d.netSalary
                       ? formatCurrency(d.netSalary.netAnnual)
@@ -264,13 +264,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 ))}
               </tr>
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Net Monthly Income
                 </td>
                 {comparisonData.map((d) => (
                   <td
                     key={d.country.slug}
-                    className="px-6 py-3 text-sm text-emerald-400"
+                    className="px-3 py-3 text-sm text-emerald-400 sm:px-6"
                   >
                     {d.netSalary
                       ? formatCurrency(d.netSalary.netMonthly)
@@ -279,13 +279,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 ))}
               </tr>
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Rent (City Center)
                 </td>
                 {comparisonData.map((d) => (
                   <td
                     key={d.country.slug}
-                    className="px-6 py-3 text-sm text-white"
+                    className="px-3 py-3 text-sm text-white sm:px-6"
                   >
                     {d.costOfLiving
                       ? `${formatCurrency(d.costOfLiving.rentAvg)}/mo`
@@ -294,13 +294,13 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 ))}
               </tr>
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Cost of Living Index
                 </td>
                 {comparisonData.map((d) => (
                   <td
                     key={d.country.slug}
-                    className="px-6 py-3 text-sm text-white"
+                    className="px-3 py-3 text-sm text-white sm:px-6"
                   >
                     {d.costOfLiving
                       ? d.costOfLiving.costIndex.toFixed(1)
@@ -309,7 +309,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 ))}
               </tr>
               <tr>
-                <td className="px-6 py-3 text-sm text-slate-400">
+                <td className="px-3 py-3 text-sm text-slate-400 sm:px-6">
                   Monthly Savings Estimate
                 </td>
                 {comparisonData.map((d) => {
@@ -317,7 +317,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
                     return (
                       <td
                         key={d.country.slug}
-                        className="px-6 py-3 text-sm text-white"
+                        className="px-3 py-3 text-sm text-white sm:px-6"
                       >
                         N/A
                       </td>
@@ -333,7 +333,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
                   return (
                     <td
                       key={d.country.slug}
-                      className={`px-6 py-3 text-sm font-semibold ${savings >= 0 ? 'text-emerald-400' : 'text-red-400'}`}
+                      className={`px-3 py-3 text-sm font-semibold sm:px-6 ${savings >= 0 ? 'text-emerald-400' : 'text-red-400'}`}
                     >
                       {formatCurrency(savings)}
                     </td>
@@ -392,7 +392,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
             Cost of Living Comparison
           </h2>
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[500px] text-left">
+            <table className="w-full min-w-[380px] text-left">
               <thead>
                 <tr className="border-b border-white/10">
                   <th className="px-4 py-3 text-sm font-semibold text-slate-400">

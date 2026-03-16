@@ -60,16 +60,17 @@ export default function TopPayingTabs({
         <div>
           {/* Ranked table */}
           <div className="mb-8 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-white/10 bg-white/[0.02]">
-                  <th className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400 sm:px-6">
                     Rank
                   </th>
-                  <th className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400 sm:px-6">
                     Country
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400 sm:px-6">
                     Avg Salary
                   </th>
                 </tr>
@@ -80,10 +81,10 @@ export default function TopPayingTabs({
                     key={country.slug}
                     className="transition-colors hover:bg-white/[0.03]"
                   >
-                    <td className="px-6 py-3 text-sm font-bold text-[#3b82f6]">
+                    <td className="px-3 py-3 text-sm font-bold text-[#3b82f6] sm:px-6">
                       #{i + 1}
                     </td>
-                    <td className="px-6 py-3">
+                    <td className="px-3 py-3 sm:px-6">
                       <Link
                         href={`/countries/${country.slug}`}
                         className="flex items-center gap-2 text-sm font-medium text-white hover:text-[#3b82f6]"
@@ -92,13 +93,14 @@ export default function TopPayingTabs({
                         {country.name}
                       </Link>
                     </td>
-                    <td className="px-6 py-3 text-right text-sm font-semibold text-white">
+                    <td className="px-3 py-3 text-right text-sm font-semibold text-white sm:px-6">
                       {formatCurrency(country.avgSalary)}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
 
           {/* Bar chart */}
@@ -138,22 +140,23 @@ export default function TopPayingTabs({
         <div>
           {/* Ranked table */}
           <div className="mb-8 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-            <table className="w-full text-left">
+            <div className="overflow-x-auto">
+            <table className="w-full min-w-[500px] text-left">
               <thead>
                 <tr className="border-b border-white/10 bg-white/[0.02]">
-                  <th className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400 sm:px-6">
                     Rank
                   </th>
-                  <th className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400 sm:px-6">
                     Job Title
                   </th>
-                  <th className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="hidden px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400 sm:table-cell sm:px-6">
                     Category
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400 sm:px-6">
                     Avg Salary
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="hidden px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400 sm:table-cell sm:px-6">
                     Countries
                   </th>
                 </tr>
@@ -164,10 +167,10 @@ export default function TopPayingTabs({
                     key={job.slug}
                     className="transition-colors hover:bg-white/[0.03]"
                   >
-                    <td className="px-6 py-3 text-sm font-bold text-[#3b82f6]">
+                    <td className="px-3 py-3 text-sm font-bold text-[#3b82f6] sm:px-6">
                       #{i + 1}
                     </td>
-                    <td className="px-6 py-3">
+                    <td className="px-3 py-3 sm:px-6">
                       <Link
                         href={`/jobs/${job.slug}`}
                         className="text-sm font-medium text-white hover:text-[#3b82f6]"
@@ -175,19 +178,20 @@ export default function TopPayingTabs({
                         {job.title}
                       </Link>
                     </td>
-                    <td className="px-6 py-3 text-sm text-slate-400">
+                    <td className="hidden px-3 py-3 text-sm text-slate-400 sm:table-cell sm:px-6">
                       {job.category}
                     </td>
-                    <td className="px-6 py-3 text-right text-sm font-semibold text-white">
+                    <td className="px-3 py-3 text-right text-sm font-semibold text-white sm:px-6">
                       {formatCurrency(job.avgSalary)}
                     </td>
-                    <td className="px-6 py-3 text-right text-sm text-slate-400">
+                    <td className="hidden px-3 py-3 text-right text-sm text-slate-400 sm:table-cell sm:px-6">
                       {job.countryCount}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
 
           {/* Bar chart */}

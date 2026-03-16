@@ -46,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="bg-[#0a0f1e] text-white min-h-screen font-sans antialiased">
+      <body className="overflow-x-hidden bg-[#0a0f1e] text-white min-h-screen font-sans antialiased">
         <Navbar />
         <main className="min-h-[calc(100vh-160px)]">{children}</main>
         <Footer />

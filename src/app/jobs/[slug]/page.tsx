@@ -112,25 +112,25 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
             </h2>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
+            <table className="w-full min-w-[400px] text-left">
               <thead>
                 <tr className="border-b border-white/10 bg-white/[0.02]">
-                  <th className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400 sm:px-6">
                     Rank
                   </th>
-                  <th className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400 sm:px-6">
                     Country
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400 sm:px-6">
                     Average
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="hidden px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400 sm:table-cell sm:px-6">
                     Entry
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="hidden px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400 sm:table-cell sm:px-6">
                     Senior
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <th className="hidden px-3 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-400 md:table-cell md:px-6">
                     Range
                   </th>
                 </tr>
@@ -141,10 +141,10 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                     key={s.id}
                     className="transition-colors hover:bg-white/[0.03]"
                   >
-                    <td className="px-6 py-3 text-sm font-semibold text-slate-400">
+                    <td className="px-3 py-3 text-sm font-semibold text-slate-400 sm:px-6">
                       #{i + 1}
                     </td>
-                    <td className="px-6 py-3">
+                    <td className="px-3 py-3 sm:px-6">
                       <Link
                         href={`/salary/${job.slug}-${s.country.slug}`}
                         className="flex items-center gap-2 text-sm font-medium text-white hover:text-[#3b82f6]"
@@ -153,16 +153,16 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                         {s.country.name}
                       </Link>
                     </td>
-                    <td className="px-6 py-3 text-right text-sm font-semibold text-white">
+                    <td className="px-3 py-3 text-right text-sm font-semibold text-white sm:px-6">
                       {formatCurrency(s.salaryAvg)}
                     </td>
-                    <td className="px-6 py-3 text-right text-sm text-slate-400">
+                    <td className="hidden px-3 py-3 text-right text-sm text-slate-400 sm:table-cell sm:px-6">
                       {formatCurrency(s.salaryEntry)}
                     </td>
-                    <td className="px-6 py-3 text-right text-sm text-slate-400">
+                    <td className="hidden px-3 py-3 text-right text-sm text-slate-400 sm:table-cell sm:px-6">
                       {formatCurrency(s.salarySenior)}
                     </td>
-                    <td className="px-6 py-3 text-right text-sm text-slate-500">
+                    <td className="hidden px-3 py-3 text-right text-sm text-slate-500 md:table-cell md:px-6">
                       {formatCurrency(s.salaryMin, true)} -{' '}
                       {formatCurrency(s.salaryMax, true)}
                     </td>
