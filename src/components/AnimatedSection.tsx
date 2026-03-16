@@ -1,6 +1,6 @@
 'use client';
 
-import { type ReactNode, useRef } from 'react';
+import { type ReactNode, useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 interface AnimatedSectionProps {
@@ -16,6 +16,16 @@ export default function AnimatedSection({
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  // Before hydration, render without animation to avoid flash
+  if (!hasMounted) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
