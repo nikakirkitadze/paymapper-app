@@ -176,7 +176,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
       {/* Ad placement */}
       <div className="mb-10">
-        <AdSense slot="job-detail" />
+        <AdSense slot="8966454053" />
       </div>
 
       {/* Compare this job CTA */}

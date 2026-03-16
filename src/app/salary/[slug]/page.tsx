@@ -271,7 +271,7 @@ export default async function SalaryPage({ params }: SalaryPageProps) {
 
         {/* Ad placement */}
         <div className="mb-10">
-          <AdSense slot="salary-detail" />
+          <AdSense slot="8966454053" />
         </div>
 
         {/* Two column: Cost of Living + Net Salary */}

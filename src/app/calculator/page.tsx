@@ -69,7 +69,7 @@ export default async function CalculatorPage() {
         </div>
       </div>
 
-      <AdSense slot="calculator" className="mt-8" />
+      <AdSense slot="8966454053" className="mt-8" />
     </div>
   );
 }

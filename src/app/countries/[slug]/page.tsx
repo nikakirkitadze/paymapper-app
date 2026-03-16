@@ -364,7 +364,7 @@ export default async function CountryDetailPage({
 
       {/* Ad placement */}
       <div className="mb-10">
-        <AdSense slot="country-detail" />
+        <AdSense slot="8966454053" />
       </div>
     </div>
   );

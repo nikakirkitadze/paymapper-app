@@ -198,7 +198,7 @@ export default async function HomePage() {
       </section>
 
       {/* Ad placement */}
-      <AdSense slot="homepage-mid" className="mx-auto max-w-7xl px-4 my-12 sm:px-6 lg:px-8" />
+      <AdSense slot="8966454053" className="mx-auto max-w-7xl px-4 my-12 sm:px-6 lg:px-8" />
 
       {/* Popular Job Comparisons */}
       <section className="py-16">
