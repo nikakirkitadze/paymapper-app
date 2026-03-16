@@ -16,26 +16,32 @@ export default function AnimatedSection({
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const [hasMounted, setHasMounted] = useState(false);
+  const [wasVisibleOnMount, setWasVisibleOnMount] = useState(false);
 
   useEffect(() => {
-    setHasMounted(true);
+    // Check if the element is already visible on first render (above the fold).
+    // If so, skip the entrance animation entirely to avoid the flash.
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 50) {
+        setWasVisibleOnMount(true);
+      }
+    }
   }, []);
-
-  // Before hydration, render without animation to avoid flash
-  if (!hasMounted) {
-    return <div className={className}>{children}</div>;
-  }
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 16 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      initial={wasVisibleOnMount ? false : { opacity: 0, y: 16 }}
+      animate={
+        wasVisibleOnMount || isInView
+          ? { opacity: 1, y: 0 }
+          : { opacity: 0, y: 16 }
+      }
       transition={{
-        duration: 0.5,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
+        duration: wasVisibleOnMount ? 0 : 0.5,
+        delay: wasVisibleOnMount ? 0 : delay,
+        ease: [0.22, 1, 0.36, 1] as const,
       }}
       className={className}
     >
