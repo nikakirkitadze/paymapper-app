@@ -51,7 +51,7 @@ export const MAP_ZOOM = 2;
 // AdSense
 // ---------------------------------------------------------------------------
 
-export const ADSENSE_CLIENT_ID = 'ca-pub-XXXXXXXXXXXXXXXX';
+export const ADSENSE_CLIENT_ID = 'ca-pub-6840443394276067';
 
 // ---------------------------------------------------------------------------
 // Navigation
