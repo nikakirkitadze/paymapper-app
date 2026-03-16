@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Job {
+  id        String   @id @default(cuid())
+  title     String   @unique
+  slug      String   @unique
+  category  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  salaries Salary[]
+
+  @@index([slug])
+  @@index([category])
+}
+
+model Country {
+  id           String  @id @default(cuid())
+  name         String  @unique
+  slug         String  @unique
+  code         String  @unique // ISO 3166-1 alpha-2
+  continent    String
+  currency     String
+  currencySymbol String
+  latitude     Float
+  longitude    Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cities       City[]
+  salaries     Salary[]
+  costOfLiving CostOfLiving[]
+  taxes        Tax[]
+
+  @@index([slug])
+  @@index([code])
+}
+
+model City {
+  id        String @id @default(cuid())
+  name      String
+  slug      String @unique
+  countryId String
+  latitude  Float
+  longitude Float
+  isCapital Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  country Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
+
+  @@unique([name, countryId])
+  @@index([countryId])
+  @@index([slug])
+}
+
+model Salary {
+  id            String @id @default(cuid())
+  jobId         String
+  countryId     String
+  salaryAvg     Float  // Annual USD
+  salaryMedian  Float
+  salaryEntry   Float
+  salarySenior  Float
+  salaryMin     Float
+  salaryMax     Float
+  dataYear      Int    @default(2025)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  job     Job     @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  country Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
+
+  @@unique([jobId, countryId, dataYear])
+  @@index([jobId])
+  @@index([countryId])
+}
+
+model CostOfLiving {
+  id                  String @id @default(cuid())
+  countryId           String
+  rentAvg             Float  // Monthly USD - 1BR city center
+  rentOutsideCenter   Float  // Monthly USD - 1BR outside center
+  groceriesMonthly    Float
+  transportMonthly    Float
+  utilitiesMonthly    Float
+  internetMonthly     Float
+  diningOutAvg        Float  // Average restaurant meal
+  costIndex           Float  // 0-100 index (NYC = 100)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  country Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
+
+  @@unique([countryId])
+}
+
+model Tax {
+  id               String @id @default(cuid())
+  countryId        String
+  incomeTaxMin     Float  // Lowest bracket %
+  incomeTaxMax     Float  // Highest bracket %
+  socialSecurity   Float  // Employee contribution %
+  effectiveRate30k Float  // Effective rate at $30k
+  effectiveRate50k Float  // Effective rate at $50k
+  effectiveRate75k Float  // Effective rate at $75k
+  effectiveRate100k Float // Effective rate at $100k
+  effectiveRate150k Float // Effective rate at $150k
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  country Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
+
+  @@unique([countryId])
+}
