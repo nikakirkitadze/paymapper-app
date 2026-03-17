@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/routing';
 import { motion } from 'framer-motion';
 import { slugify } from '@/lib/formatters';
 
@@ -55,7 +55,6 @@ export default function HeroSearch() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#0a0f1e] via-[#0f172a] to-[#0a0f1e] py-24 sm:py-32">
-      {/* Decorative gradient orbs */}
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#3b82f6]/20 blur-[120px]" />
       <div className="pointer-events-none absolute -bottom-40 right-0 h-[400px] w-[400px] rounded-full bg-[#8b5cf6]/10 blur-[100px]" />
 

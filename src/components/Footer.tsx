@@ -1,22 +1,25 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 
-const navigation = {
-  explore: [
-    { label: 'Search Salaries', href: '/search' },
-    { label: 'Compare', href: '/compare' },
-    { label: 'World Map', href: '/map' },
-    { label: 'Jobs', href: '/jobs' },
-    { label: 'Countries', href: '/countries' },
-    { label: 'Calculator', href: '/calculator' },
-    { label: 'Top Paying', href: '/top-paying' },
-  ],
-  legal: [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Service', href: '/terms' },
-  ],
-};
+export default async function Footer() {
+  const t = await getTranslations('footer');
 
-export default function Footer() {
+  const navigation = {
+    explore: [
+      { label: t('searchSalaries'), href: '/search' as const },
+      { label: t('compare'), href: '/compare' as const },
+      { label: t('worldMap'), href: '/map' as const },
+      { label: t('jobs'), href: '/jobs' as const },
+      { label: t('countries'), href: '/countries' as const },
+      { label: t('calculator'), href: '/calculator' as const },
+      { label: t('topPaying'), href: '/top-paying' as const },
+    ],
+    legal: [
+      { label: t('privacyPolicy'), href: '/privacy' as const },
+      { label: t('termsOfService'), href: '/terms' as const },
+    ],
+  };
+
   return (
     <footer className="relative mt-20">
       <div className="section-divider" />
@@ -42,15 +45,14 @@ export default function Footer() {
                 <span className="text-lg font-bold">PayMapper</span>
               </Link>
               <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                Compare salaries, taxes, and cost of living across 30+ countries.
-                Make informed decisions about your career and relocation.
+                {t('description')}
               </p>
             </div>
 
             {/* Explore */}
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-                Explore
+                {t('explore')}
               </h3>
               <ul className="mt-4 space-y-2">
                 {navigation.explore.map((link) => (
@@ -69,7 +71,7 @@ export default function Footer() {
             {/* Legal */}
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-                Legal
+                {t('legal')}
               </h3>
               <ul className="mt-4 space-y-2">
                 {navigation.legal.map((link) => (
@@ -89,7 +91,7 @@ export default function Footer() {
           {/* Bottom bar */}
           <div className="mt-10 border-t border-white/10 pt-6 text-center">
             <p className="text-xs text-slate-500">
-              &copy; {new Date().getFullYear()} PayMapper. All rights reserved.
+              {t('copyright', { year: new Date().getFullYear() })}
             </p>
           </div>
         </div>

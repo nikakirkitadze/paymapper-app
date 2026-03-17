@@ -1,20 +1,20 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback, type KeyboardEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { SearchResult } from '@/lib/types';
 
 interface SearchAutocompleteProps {
-  placeholder?: string;
   className?: string;
 }
 
 export default function SearchAutocomplete({
-  placeholder = 'Search jobs or countries...',
   className = '',
 }: SearchAutocompleteProps) {
   const router = useRouter();
+  const t = useTranslations('search');
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,10 +23,6 @@ export default function SearchAutocomplete({
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // ------------------------------------------------------------------
-  // Debounced fetch
-  // ------------------------------------------------------------------
 
   const fetchResults = useCallback(async (q: string) => {
     if (q.length < 2) {
@@ -59,10 +55,6 @@ export default function SearchAutocomplete({
     };
   }, [query, fetchResults]);
 
-  // ------------------------------------------------------------------
-  // Close dropdown when clicking outside
-  // ------------------------------------------------------------------
-
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (
@@ -78,10 +70,6 @@ export default function SearchAutocomplete({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // ------------------------------------------------------------------
-  // Navigate to selected result
-  // ------------------------------------------------------------------
-
   function navigateTo(result: SearchResult) {
     setIsOpen(false);
     setQuery('');
@@ -91,10 +79,6 @@ export default function SearchAutocomplete({
       router.push(`/countries/${result.slug}`);
     }
   }
-
-  // ------------------------------------------------------------------
-  // Keyboard navigation
-  // ------------------------------------------------------------------
 
   function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
     if (!isOpen) return;
@@ -124,14 +108,8 @@ export default function SearchAutocomplete({
     }
   }
 
-  // ------------------------------------------------------------------
-  // Group results by type
-  // ------------------------------------------------------------------
-
   const jobs = results.filter((r) => r.type === 'job');
   const countries = results.filter((r) => r.type === 'country');
-
-  // Build flat ordered list for keyboard index tracking
   const flatResults = [...jobs, ...countries];
 
   return (
@@ -158,7 +136,7 @@ export default function SearchAutocomplete({
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => results.length > 0 && setIsOpen(true)}
           onKeyDown={handleKeyDown}
-          placeholder={placeholder}
+          placeholder={t('autocompletePlaceholder')}
           className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-sm text-white placeholder-slate-500 backdrop-blur-sm transition-colors focus:border-[#3b82f6] focus:outline-none focus:ring-1 focus:ring-[#3b82f6]"
           role="combobox"
           aria-expanded={isOpen}
@@ -187,7 +165,7 @@ export default function SearchAutocomplete({
             {jobs.length > 0 && (
               <>
                 <li className="px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                  Jobs
+                  {t('groupJobs')}
                 </li>
                 {jobs.map((result) => {
                   const idx = flatResults.indexOf(result);
@@ -219,7 +197,7 @@ export default function SearchAutocomplete({
             {countries.length > 0 && (
               <>
                 <li className="mt-1 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                  Countries
+                  {t('groupCountries')}
                 </li>
                 {countries.map((result) => {
                   const idx = flatResults.indexOf(result);

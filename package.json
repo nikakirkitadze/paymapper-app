@@ -25,6 +25,7 @@
     "framer-motion": "^12.36.0",
     "leaflet": "^1.9.4",
     "next": "^15.5.12",
+    "next-intl": "^4.8.3",
     "prisma": "^6.19.2",
     "react": "19.2.3",
     "react-chartjs-2": "^5.3.1",

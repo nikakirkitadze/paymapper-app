@@ -1,22 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const navLinks = [
-  { label: 'Salaries', href: '/search' },
-  { label: 'Compare', href: '/compare' },
-  { label: 'Map', href: '/map' },
-  { label: 'Jobs', href: '/jobs' },
-  { label: 'Countries', href: '/countries' },
-  { label: 'Calculator', href: '/calculator' },
-];
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations('nav');
+
+  const navLinks = [
+    { label: t('salaries'), href: '/search' as const },
+    { label: t('compare'), href: '/compare' as const },
+    { label: t('map'), href: '/map' as const },
+    { label: t('jobs'), href: '/jobs' as const },
+    { label: t('countries'), href: '/countries' as const },
+    { label: t('calculator'), href: '/calculator' as const },
+  ];
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + '/');
@@ -43,29 +45,32 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav links */}
-        <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                  isActive(link.href)
-                    ? 'bg-white/10 text-white'
-                    : 'text-slate-400 hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden items-center gap-1 md:flex">
+          <ul className="flex items-center gap-1">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? 'bg-white/10 text-white'
+                      : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <LanguageSwitcher />
+        </div>
 
         {/* Mobile hamburger button */}
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
           className="inline-flex items-center justify-center rounded-lg p-2 text-slate-300 transition-colors hover:bg-white/10 hover:text-white md:hidden"
-          aria-label="Toggle navigation menu"
+          aria-label={t('toggleMenu')}
           aria-expanded={mobileOpen}
         >
           <svg
@@ -119,6 +124,9 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
+              <li className="pt-2">
+                <LanguageSwitcher />
+              </li>
             </ul>
           </motion.div>
         )}
