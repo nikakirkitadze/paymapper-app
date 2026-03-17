@@ -151,6 +151,8 @@ export default function SearchAutocomplete({
         </svg>
         <input
           ref={inputRef}
+          id="search-autocomplete"
+          name="search"
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
