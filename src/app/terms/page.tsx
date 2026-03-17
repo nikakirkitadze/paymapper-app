@@ -90,8 +90,8 @@ export default function TermsPage() {
           <h2 className="mb-3 text-xl font-bold text-white">8. Contact</h2>
           <p>
             If you have questions about these Terms, please contact us at{' '}
-            <a href="mailto:support@paymapper.com" className="text-[#3b82f6] hover:underline">
-              support@paymapper.com
+            <a href="mailto:contact@paymapper.app" className="text-[#3b82f6] hover:underline">
+              contact@paymapper.app
             </a>.
           </p>
         </section>

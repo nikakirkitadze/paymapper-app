@@ -105,8 +105,8 @@ export default function PrivacyPage() {
           <h2 className="mb-3 text-xl font-bold text-white">9. Contact</h2>
           <p>
             For privacy-related inquiries, please contact us at{' '}
-            <a href="mailto:privacy@paymapper.com" className="text-[#3b82f6] hover:underline">
-              privacy@paymapper.com
+            <a href="mailto:contact@paymapper.app" className="text-[#3b82f6] hover:underline">
+              contact@paymapper.app
             </a>.
           </p>
         </section>
