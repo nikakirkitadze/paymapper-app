@@ -18,6 +18,7 @@ export default function Navbar() {
     { label: t('jobs'), href: '/jobs' as const },
     { label: t('countries'), href: '/countries' as const },
     { label: t('calculator'), href: '/calculator' as const },
+    { label: t('about'), href: '/about' as const },
   ];
 
   const isActive = (href: string) =>

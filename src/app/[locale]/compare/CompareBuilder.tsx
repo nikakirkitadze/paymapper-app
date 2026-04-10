@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { countryCodeToFlag } from '@/lib/utils';
+import { trackCompareUsage } from '@/lib/analytics';
 
 interface CompareBuilderProps {
   jobs: { slug: string; title: string }[];
@@ -28,6 +29,7 @@ export default function CompareBuilder({ jobs, countries }: CompareBuilderProps)
 
   const handleCompare = () => {
     if (selectedJob && selectedCountries.length >= 2) {
+      trackCompareUsage(selectedJob, selectedCountries);
       router.push(`/compare/${selectedJob}/${selectedCountries.join('-vs-')}`);
     }
   };

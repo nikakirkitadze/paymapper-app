@@ -50,6 +50,13 @@ export default async function CalculatorPage() {
           <p>{t('taxExplainer1')}</p>
           <p>{t('taxExplainer2')}</p>
           <p>{t('taxExplainer3')}</p>
+        </div>
+
+        <h2 className="mb-4 mt-10 text-xl font-bold">{t('whyNetTitle')}</h2>
+        <div className="space-y-3 text-sm leading-relaxed text-slate-400">
+          <p>{t('whyNetP1')}</p>
+          <p>{t('whyNetP2')}</p>
+          <p>{t('whyNetP3')}</p>
           <p className="rounded-xl border border-white/10 bg-white/5 p-4 text-xs text-slate-500">
             {t('disclaimer')}
           </p>

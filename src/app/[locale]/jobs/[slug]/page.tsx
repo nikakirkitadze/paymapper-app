@@ -111,6 +111,26 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
         </div>
       </AnimatedSection>
 
+      {/* About the role - narrative context */}
+      <AnimatedSection delay={0.03}>
+        <section className="mb-10 rounded-2xl border border-white/10 bg-white/5 p-6">
+          <h2 className="mb-4 text-xl font-bold text-white">
+            {t('aboutRoleTitle', { jobTitle: job.title })}
+          </h2>
+          <div className="space-y-3 text-sm leading-relaxed text-slate-300">
+            <p>{t('aboutRoleP1', { jobTitle: job.title, count: salaries.length })}</p>
+            <p>
+              {t('aboutRoleP2', {
+                jobTitle: job.title,
+                topCountry: salaries[0].country.name,
+                topSalary: formatCurrency(salaries[0].salaryAvg),
+              })}
+            </p>
+            <p>{t('aboutRoleP3')}</p>
+          </div>
+        </section>
+      </AnimatedSection>
+
       {/* Global Salary Ranking Table */}
       <AnimatedSection delay={0.05}>
         <div className="mb-10 overflow-hidden rounded-2xl border border-white/10 bg-white/5">

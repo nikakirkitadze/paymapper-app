@@ -4,6 +4,7 @@ import { useState, type FormEvent } from 'react';
 import { useRouter } from '@/i18n/routing';
 import { motion } from 'framer-motion';
 import { slugify } from '@/lib/formatters';
+import { trackSearchUsage } from '@/lib/analytics';
 
 const countries = [
   { name: 'United States', slug: 'united-states' },
@@ -50,6 +51,7 @@ export default function HeroSearch() {
     if (!jobTitle.trim() || !countrySlug) return;
 
     const jobSlug = slugify(jobTitle.trim());
+    trackSearchUsage(jobTitle.trim(), 'hero_search');
     router.push(`/salary/${jobSlug}-${countrySlug}`);
   }
 

@@ -20,15 +20,27 @@ export default function AdSense({
   useEffect(() => {
     if (!isProduction) return;
 
-    try {
-      // Push the ad only if the script has loaded
-      const adsbygoogle = (window as unknown as { adsbygoogle: unknown[] })
-        .adsbygoogle;
-      if (adsbygoogle) {
-        adsbygoogle.push({});
+    const pushAd = () => {
+      try {
+        const w = window as unknown as { adsbygoogle: unknown[] };
+        (w.adsbygoogle = w.adsbygoogle || []).push({});
+      } catch {
+        // silently ignore
       }
-    } catch {
-      // AdSense script may not have loaded yet; silently ignore.
+    };
+
+    // If the AdSense script is already loaded, push immediately.
+    // Otherwise, wait for it to load before pushing.
+    const script = document.querySelector<HTMLScriptElement>(
+      'script[src*="adsbygoogle"]',
+    );
+    if (script && script.dataset.loaded) {
+      pushAd();
+    } else if (script) {
+      script.addEventListener('load', () => {
+        script.dataset.loaded = 'true';
+        pushAd();
+      });
     }
   }, [isProduction]);
 

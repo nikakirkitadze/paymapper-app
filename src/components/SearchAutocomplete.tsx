@@ -5,6 +5,7 @@ import { useRouter } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { SearchResult } from '@/lib/types';
+import { trackSearchUsage } from '@/lib/analytics';
 
 interface SearchAutocompleteProps {
   className?: string;
@@ -35,9 +36,10 @@ export default function SearchAutocomplete({
     try {
       const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
       if (res.ok) {
-        const data: SearchResult[] = await res.json();
-        setResults(data);
-        setIsOpen(data.length > 0);
+        const data = await res.json();
+        const list: SearchResult[] = Array.isArray(data) ? data : [];
+        setResults(list);
+        setIsOpen(list.length > 0);
         setActiveIndex(-1);
       }
     } catch {
@@ -72,6 +74,7 @@ export default function SearchAutocomplete({
 
   function navigateTo(result: SearchResult) {
     setIsOpen(false);
+    trackSearchUsage(query, result.type);
     setQuery('');
     if (result.type === 'job') {
       router.push(`/jobs/${result.slug}`);

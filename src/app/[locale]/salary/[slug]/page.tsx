@@ -250,6 +250,31 @@ export default async function SalaryPage({ params }: SalaryPageProps) {
           </div>
         </AnimatedSection>
 
+        {/* Narrative insights */}
+        <AnimatedSection delay={0.08}>
+          <section className="mb-10 rounded-2xl border border-white/10 bg-white/5 p-6">
+            <h2 className="mb-4 text-xl font-bold text-white">
+              {t('insightsTitle', {
+                jobTitle: job.title,
+                countryName: country.name,
+              })}
+            </h2>
+            <div className="space-y-3 text-sm leading-relaxed text-slate-300">
+              <p>
+                {t('insightsP1', {
+                  jobTitle: job.title,
+                  countryName: country.name,
+                  avg: formatCurrency(salary.salaryAvg),
+                  min: formatCurrency(salary.salaryEntry),
+                  max: formatCurrency(salary.salarySenior),
+                })}
+              </p>
+              <p>{t('insightsP2')}</p>
+              <p>{t('insightsP3')}</p>
+            </div>
+          </section>
+        </AnimatedSection>
+
         {/* Salary Distribution Bar Chart */}
         <AnimatedSection delay={0.1}>
           <div className="mb-10 rounded-2xl border border-white/10 bg-white/5 p-6">

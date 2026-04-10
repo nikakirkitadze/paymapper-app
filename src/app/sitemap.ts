@@ -38,9 +38,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/countries',
     '/calculator',
     '/map',
-    '/search',
     '/top-paying',
     '/compare',
+    '/about',
+    '/contact',
+    '/faq',
     '/privacy',
     '/terms',
   ];

@@ -12,6 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
     title: t('searchTitle', { appName: 'PayMapper' }),
     description: t('searchDescription'),
     alternates: getAlternates('/search'),
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 

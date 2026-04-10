@@ -14,6 +14,11 @@ export default async function Footer() {
       { label: t('calculator'), href: '/calculator' as const },
       { label: t('topPaying'), href: '/top-paying' as const },
     ],
+    company: [
+      { label: t('about'), href: '/about' as const },
+      { label: t('contact'), href: '/contact' as const },
+      { label: t('faq'), href: '/faq' as const },
+    ],
     legal: [
       { label: t('privacyPolicy'), href: '/privacy' as const },
       { label: t('termsOfService'), href: '/terms' as const },
@@ -25,9 +30,9 @@ export default async function Footer() {
       <div className="section-divider" />
       <div className="bg-[#060a16] py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {/* Company info */}
-            <div>
+            <div className="col-span-2 md:col-span-1">
               <Link href="/" className="flex items-center gap-2 text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +61,25 @@ export default async function Footer() {
               </h3>
               <ul className="mt-4 space-y-2">
                 {navigation.explore.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-slate-400 transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                {t('company')}
+              </h3>
+              <ul className="mt-4 space-y-2">
+                {navigation.company.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}

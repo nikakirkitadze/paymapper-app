@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import type { SearchResult } from '@/lib/types';
 
 export async function GET(request: Request) {
   try {
@@ -24,9 +25,9 @@ export async function GET(request: Request) {
           },
         },
         select: {
-          id: true,
           title: true,
           slug: true,
+          category: true,
         },
         take: 5,
       }),
@@ -38,7 +39,6 @@ export async function GET(request: Request) {
           },
         },
         select: {
-          id: true,
           name: true,
           slug: true,
           code: true,
@@ -47,7 +47,22 @@ export async function GET(request: Request) {
       }),
     ]);
 
-    return NextResponse.json({ jobs, countries });
+    const results: SearchResult[] = [
+      ...jobs.map((j) => ({
+        type: 'job' as const,
+        title: j.title,
+        slug: j.slug,
+        category: j.category,
+      })),
+      ...countries.map((c) => ({
+        type: 'country' as const,
+        title: c.name,
+        slug: c.slug,
+        countryCode: c.code,
+      })),
+    ];
+
+    return NextResponse.json(results);
   } catch (error) {
     console.error('Search error:', error);
     return NextResponse.json(

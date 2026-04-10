@@ -169,6 +169,29 @@ export default async function CountryDetailPage({
         </div>
       </AnimatedSection>
 
+      {/* About the country - narrative context */}
+      <AnimatedSection delay={0.08}>
+        <section className="mb-10 rounded-2xl border border-white/10 bg-white/5 p-6">
+          <h2 className="mb-4 text-xl font-bold text-white">
+            {tc('aboutCountryTitle', { countryName: country.name })}
+          </h2>
+          <div className="space-y-3 text-sm leading-relaxed text-slate-300">
+            <p>
+              {tc('aboutCountryP1', {
+                countryName: country.name,
+                jobCount: salaries.length,
+                avgSalary: formatCurrency(overallAvg),
+                costIndex: costOfLiving
+                  ? costOfLiving.costIndex.toFixed(1)
+                  : tCommon('na'),
+              })}
+            </p>
+            <p>{tc('aboutCountryP2', { countryName: country.name })}</p>
+            <p>{tc('aboutCountryP3', { countryName: country.name })}</p>
+          </div>
+        </section>
+      </AnimatedSection>
+
       {/* Top Paying Jobs Table */}
       {salaries.length > 0 && (
         <AnimatedSection delay={0.1}>

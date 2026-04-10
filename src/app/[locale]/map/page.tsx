@@ -34,6 +34,16 @@ export default async function MapPage() {
         {t('subtitle')}
       </p>
       <MapClient jobs={jobs} />
+
+      {/* Explanatory content */}
+      <div className="mt-12 max-w-3xl">
+        <h2 className="mb-4 text-xl font-bold">{t('aboutMapTitle')}</h2>
+        <div className="space-y-3 text-sm leading-relaxed text-slate-400">
+          <p>{t('aboutMapP1')}</p>
+          <p>{t('aboutMapP2')}</p>
+          <p>{t('aboutMapP3')}</p>
+        </div>
+      </div>
     </div>
   );
 }

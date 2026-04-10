@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { formatCurrency, formatPercent } from '@/lib/formatters';
+import { trackCalculatorSubmit } from '@/lib/analytics';
 
 interface Country {
   slug: string;
@@ -52,6 +53,7 @@ export default function CalculatorClient({ countries }: CalculatorClientProps) {
       if (res.ok) {
         const data = await res.json();
         setResult(data);
+        trackCalculatorSubmit(countrySlug, amount);
       } else {
         setError(t('taxNotAvailable'));
       }
